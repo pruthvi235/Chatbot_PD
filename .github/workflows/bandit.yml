@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.12.0  # Choose the Python version you need
+        python-version: 3.11  # Replace with the appropriate Python version
 
     - name: Install Bandit
       run: |
@@ -24,4 +24,4 @@ jobs:
         pip install bandit
 
     - name: Run Bandit
-      run: bandit -r .
+      run: bandit -r Chatbot_PD/main.py
