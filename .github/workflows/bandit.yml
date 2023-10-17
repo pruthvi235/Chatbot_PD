@@ -29,7 +29,7 @@ jobs:
           curl -X POST \
             -H "Authorization: token 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" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/pruthvi235/Chatbot_PD/actions/workflows/<workflow_id>/dispatches \
+            https://api.github.com/repos/pruthvi235/Chatbot_PD/actions/workflows/6516173085/dispatches \
             -d '{"ref":"main"}'
 
     - name: Run Bandit
