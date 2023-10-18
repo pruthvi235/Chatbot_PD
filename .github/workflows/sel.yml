@@ -27,10 +27,11 @@ jobs:
           chmod +x chromedriver
           sudo mv chromedriver /usr/local/bin/
           
-      - name: Run Selenium Tests
-        run: |
-          # Run your Selenium tests using Python
-          python your_selenium_test_script.py
+      -  name: Run Selenium Tests
+         run: |
+               # Run your Selenium tests using Python
+               python ${{ github.workspace }}/your_selenium_test_script.py
+
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v2
