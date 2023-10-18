@@ -1,0 +1,49 @@
+name: Run Bandit and Trigger Another Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11  # Replace with the appropriate Python version
+
+    - name: Install Bandit
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit
+        bandit -r Chatbot_PD/main.py
+
+  trigger_another_workflow:
+    needs: bandit
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Workflow in Another Repo
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ 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 }}
+        script: |
+          const { data: workflow } = await github.actions.listRepoWorkflows({
+            owner: 'Vidushimodi',  # Owner of the target repository
+            repo: 'demo1',          # Name of the target repository
+          });
+
+          const workflow_id = workflow.workflows.find(w => w.name === 'python-publish.yml').id;
+
+          const response = await github.actions.createWorkflowDispatch({
+            owner: 'Vidushimodi',  # Owner of the target repository
+            repo: 'demo1',          # Name of the target repository
+            workflow_id: 6558288307,  # ID of the workflow you want to trigger
+          });
+          console.log(response.data);
