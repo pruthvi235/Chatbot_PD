@@ -13,10 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Java
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'  # Use single quotes around the version number
+    - name: Install Java 11
+      run: |
+        sudo apt-get -y install openjdk-11-jdk
+        java -version
+      shell: bash
 
     - name: Run ZAP Scan
       run: |
@@ -24,9 +25,9 @@ jobs:
         unzip ZAP_2.10.0_Core.zip
         cd ZAP_2.10.0
         ./zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true
-        ./zap-cli --zap-url http://localhost:8080 -p 8080 quick-scan --self-contained "https://github.com/pruthvi235/Chatbot_PD"
+        ./zap-cli --zap-url http://localhost:8080 -p 8080 quick-scan --self-contained "http://your-chatbot-url-here"
       env:
-        JAVA_HOME: ${{ runner.tool.jdk11 }}
+        JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
 
     - name: Publish ZAP Scan Results
       run: |
