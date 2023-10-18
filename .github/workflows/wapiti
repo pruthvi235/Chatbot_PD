@@ -1,0 +1,25 @@
+name: Wapiti Security Scan
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch as needed
+
+jobs:
+  wapiti_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Wapiti
+      run: |
+        sudo apt-get -y install wapiti
+      shell: bash
+
+    - name: Run Wapiti Scan
+      run: |
+        wapiti https://khaanvaani.streamlit.app/
+      env:
+        WAPITI_TARGET: "https://khaanvaani.streamlit.app/"
