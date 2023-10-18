@@ -1,23 +1,23 @@
-name: Dev to Test Workflow
+# name: Dev to Test Workflow
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+#     steps:
+#     - name: Check out code
+#       uses: actions/checkout@v2
 
-    - name: Run Security Checks
-      run: |
-        # Add your security checks and tests here
+#     - name: Run Security Checks
+#       run: |
+#         # Add your security checks and tests here
 
-    - name: Push to Test Repository
-      run: |
-        git remote add chatbot_test https://github.com/Vidushimodi/demo1.git
-        git push demo1 main
+#     - name: Push to Test Repository
+#       run: |
+#         git remote add chatbot_test https://github.com/Vidushimodi/demo1.git
+#         git push demo1 main
