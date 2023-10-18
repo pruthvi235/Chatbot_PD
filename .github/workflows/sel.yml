@@ -1,28 +1,28 @@
-# name: Selenium Testing CI/CD
+name: Selenium Testing CI/CD
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v2
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-#       - name: Set up Python
-#         uses: actions/setup-python@v2
-#         with:
-#           python-version: 3.12.0  # Replace with your Python version
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12.0  # Replace with your Python version
 
-#       - name: Run Selenium Tests
-#         run: python prog.py
+      - name: Run Selenium Tests
+        run: python main.py
 
-#       - name: Upload Test Results
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: test-results
-#           path: test-results/
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: test-results/
