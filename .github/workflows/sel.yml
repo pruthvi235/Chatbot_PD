@@ -29,8 +29,8 @@ jobs:
           
       -  name: Run Selenium Tests
          run: |
-               # Run your Selenium tests using Python
-               python ${{ github.workspace }}/your_selenium_test_main.py
+               - name: Run Selenium Tests
+                 run: python ${{ github.workspace }}/main.py
 
 
       - name: Upload Test Results
