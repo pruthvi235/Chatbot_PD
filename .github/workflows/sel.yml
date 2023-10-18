@@ -1,3 +1,5 @@
+name: Selenium Testing CI/CD
+
 on:
   push:
     branches:
@@ -16,25 +18,11 @@ jobs:
         with:
           python-version: 3.12.0  # Replace with your Python version
 
-      - name: Install Selenium and WebDriver
-        run: |
-          pip install selenium
-          # Download and install the appropriate WebDriver (e.g., ChromeDriver or GeckoDriver)
-          # You may need to check for the latest version and provide the download URL.
-          # Example for ChromeDriver:
-          wget https://chromedriver.storage.googleapis.com/98.0.4758.102/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          chmod +x chromedriver
-          sudo mv chromedriver /usr/local/bin/
-          
-      -  name: Run Selenium Tests
-         run: |
-               - name: Run Selenium Tests
-                 run: python ${{ github.workspace }}/main.py
-
+      - name: Run Selenium Tests
+        run: python main.py
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v2
         with:
-          name: test-results-${{ github.run_number }}
+          name: test-results
           path: test-results/
