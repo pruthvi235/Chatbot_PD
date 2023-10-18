@@ -18,8 +18,6 @@ jobs:
         with:
           python-version: 3.12.0  # Replace with your Python version
 
-      - name: Install Dependencies
-        run: pip install -r requirements.txt
 
       - name: Run Selenium Tests
         run: python main.py
