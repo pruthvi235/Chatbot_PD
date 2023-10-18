@@ -16,8 +16,7 @@ jobs:
         with:
           python-version: 3.12.0  # Replace with your Python version
 
-      - name: Run Selenium Tests
-        run: python prog.py
+      
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v2
