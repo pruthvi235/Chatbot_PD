@@ -9,6 +9,10 @@ jobs:
   bandit:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9, 3.10, 3.11, 3.12]
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -16,21 +20,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.11  # Replace with the appropriate Python version
+        python-version: ${{ matrix.python-version }}
 
     - name: Install Bandit
       run: |
         python -m pip install --upgrade pip
         pip install bandit
-          # Run your security checks using Bandit
-          # If security checks pass, trigger the workflow in repo2
-          # Example: Trigger the workflow in repo2 using GitHub API
-          # Replace <token> and <repo2> with your own values
-          curl -X POST \
-            -H "Authorization: token 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" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/Vidushimodi/demo1/actions/workflows/6558288307/dispatches \
-            -d '{"ref":"main"}'
 
     - name: Run Bandit
-      run: bandit -r Chatbot_PD/main.py
+      run: bandit -r .
