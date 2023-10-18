@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: 3.12.0  # Replace with your Python version
 
+      - name: Install Selenium
+        run: pip install selenium
 
       - name: Run Selenium Tests
         run: python main.py
