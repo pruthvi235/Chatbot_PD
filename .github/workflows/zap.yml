@@ -16,7 +16,7 @@ jobs:
     - name: Setup Java
       uses: actions/setup-java@v2
       with:
-        java-version: 11  # ZAP requires Java 8 or higher
+        java-version: '11'  # Use single quotes around the version number
 
     - name: Run ZAP Scan
       run: |
@@ -24,15 +24,17 @@ jobs:
         unzip ZAP_2.10.0_Core.zip
         cd ZAP_2.10.0
         ./zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true
-        ./zap-cli --zap-url http://localhost:8080 -p 8080 quick-scan --self-contained "http://your-chatbot-url-here"
+        ./zap-cli --zap-url http://localhost:8080 -p 8080 quick-scan --self-contained "https://github.com/pruthvi235/Chatbot_PD"
       env:
-        JAVA_HOME: ${{ runner.tools.java-separator }}
+        JAVA_HOME: ${{ runner.tool.jdk11 }}
+
     - name: Publish ZAP Scan Results
       run: |
         mkdir -p ${{ github.workspace }}/zap-reports
         mv alerts.json ${{ github.workspace }}/zap-reports
         echo '::set-output name=ZAP_SCAN_REPORT_PATH::zap-reports/alerts.json'
       working-directory: ${{ runner.workspace }}
+
     - name: Upload ZAP Scan Report
       uses: actions/upload-artifact@v2
       with:
