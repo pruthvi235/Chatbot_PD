@@ -25,7 +25,7 @@ jobs:
         unzip ZAP_2.10.0_Core.zip
         cd ZAP_2.10.0
         ./zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true
-        ./zap-cli --zap-url http://localhost:8080 -p 8080 quick-scan --self-contained "http://your-chatbot-url-here"
+        ./zap-cli --zap-url http://localhost:8080 -p 8080 quick-scan --self-contained "https://khaanvaani.streamlit.app/"
       env:
         JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
 
