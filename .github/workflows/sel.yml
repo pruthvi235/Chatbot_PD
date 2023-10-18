@@ -13,16 +13,22 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up Python and create a virtual environment
         uses: actions/setup-python@v2
         with:
-          python-version: 3.12.0  # Replace with your Python version
+        python-version: 3.12.0
+
+      - name: Create a virtual environment
+        run: python -m venv venv
+
+      - name: Activate the virtual environment
+        run: source venv/bin/activate
+
+      - name: Install required modules
+        run: pip install -r requirements.txt
 
       - name: Run Selenium Tests
         run: python main.py
 
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v2
-        with:
-         name: test-results
-         path: results/
+      - name: Deactivate the virtual environment
+        run: deactivate
