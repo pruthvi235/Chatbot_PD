@@ -1,4 +1,4 @@
 streamlit
 streamlit_chat
-langchain
+langchain==0.0.217
 sentence_transformers
