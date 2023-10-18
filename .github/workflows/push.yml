@@ -32,7 +32,7 @@ jobs:
     - name: Trigger Workflow in Another Repo
       uses: actions/github-script@v4
       with:
-        github-token: ${{ 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 }}
+        github-token: ${{ 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 }} # Use the correct secret name
         script: |
           const { data: workflow } = await github.actions.listRepoWorkflows({
             owner: 'Vidushimodi',  # Owner of the target repository
@@ -40,7 +40,7 @@ jobs:
           });
 
           const workflow_id = workflow.workflows.find(w => w.name === 'python-publish.yml').id;
-
+          
           const response = await github.actions.createWorkflowDispatch({
             owner: 'Vidushimodi',  # Owner of the target repository
             repo: 'demo1',          # Name of the target repository
