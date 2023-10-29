@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install -r requirements.txt
-        working-directory: ${{ github.workspace }}
+      
 
       - name: Run Selenium Tests
         run: test.py  # Update the path to your test script
