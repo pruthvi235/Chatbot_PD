@@ -23,7 +23,7 @@ jobs:
       
 
       - name: Run Selenium Tests
-        run: test.py  # Update the path to your test script
+        run: teat.py  # Update the path to your test script
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v2
