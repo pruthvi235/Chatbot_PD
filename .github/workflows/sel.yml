@@ -18,9 +18,7 @@ jobs:
         with:
           python-version: 3.12.0  # Replace with the appropriate Python version
 
-      - name: Install Dependencies
-      
-      
+   
 
       - name: Run Selenium Tests
         run: teat.py  # Update the path to your test script
