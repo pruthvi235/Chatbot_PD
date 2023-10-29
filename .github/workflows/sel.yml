@@ -1,4 +1,4 @@
-name: Selenium Testing
+name: Selenium Testing CI/CD
 
 on:
   push:
@@ -16,12 +16,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.12.0  # Replace with your Python version
+          python-version: 3.12.0  # Replace with the appropriate Python version
 
-      - name: Install Selenium
-        run: pip install selenium
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+        working-directory: ${{ github.workspace }}
 
       - name: Run Selenium Tests
-        run:  selenium -r
-       
-    
+        run: test.py  # Update the path to your test script
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: test-results/
